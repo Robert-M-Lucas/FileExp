@@ -81,11 +81,12 @@ class FileExplorer():
         
     def delete(self, event):
         selection = self.Lb.get(self.Lb.curselection())
-        self.changeInfo("Deleting...")
-        print("Deleting", selection)
-        if os.path.isfile(self._dir + self.Lb.get(self.Lb.curselection())):
+        print("Deleting", self._dir + selection)
+        if os.path.isfile(self._dir + selection):
+            self.changeInfo("Deleting...")
             os.remove(os.path.join(self._dir, selection))
         else:
+            self.changeInfo("Deleting...")
             shutil.rmtree(os.path.join(self._dir, selection))
         self.renderFolder()
         self.changeInfo("Done!")
